@@ -52,10 +52,10 @@ const BufferTracking = function(config) {
   });
 
   player.on('waiting', function() {
-    if ((scrubbing === false) && (player.currentTime() > 0)) {
+    if (bufferStart == false && scrubbing === false && player.currentTime() > 0) {
       bufferStart = new Date();
       bufferPosition = +player.currentTime().toFixed(0);
-      readyState = +player.readyState()
+      readyState = +player.readyState();
     }
   });
 
