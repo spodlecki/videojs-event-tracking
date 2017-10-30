@@ -7,6 +7,16 @@
     ele.innerHTML = node.outerHTML + ele.innerHTML;
   }
 
+  var btn = document.getElementById('load')
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    player.autoplay(true);
+    player.src([
+      { src: '//vjs.zencdn.net/v/oceans.mp4?' + Math.random(), type: 'video/mp4' },
+      { src: '//vjs.zencdn.net/v/oceans.webm?' + Math.random(), type: 'video/webm' }
+    ]);
+  });
+
   var player = window.player = videojs('videojs-event-tracking-player', {
     poster: 'http://vjs.zencdn.net/v/oceans.png',
     sources: [

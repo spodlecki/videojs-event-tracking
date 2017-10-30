@@ -22,6 +22,44 @@ videoInstance.eventTracking({... config ...});
 
 ## Current Events
 
+
+### Play
+
+This event is triggered when the video has been played for the first time. If you are looking to track play events, simply listen on the player for a normal "play" or "playing" event.
+
+```javascript
+player.on('tracking:firstplay', (e, data) => console.log(data))
+```
+
+Data Attributes:
+
+* secondsToLoad: Total number of seconds between the player initializing a play request and when the first frame begins.
+
+### Pausing
+
+Tracks when users pause the video.
+
+```javascript
+player.on('tracking:pause', (e, data) => console.log(data))
+```
+
+Data Attributes:
+
+* pauseCount:       Total number of Pause events triggered
+
+### Seeking
+
+During playback, we are tracking how many times a person seeks, and the position a user has seeked to.
+
+```javascript
+player.on('tracking:seek', (e, data) => console.log(data))
+```
+
+Data Attributes:
+
+* seekCount: total number of seeks that has occuring during this file
+* seekTo: Position, in seconds, that has been seeked to.
+
 ### Buffering
 
 Tracks when the video player is marked as buffering and waits until the player has made some progress.
@@ -36,18 +74,6 @@ Data Attributes:
 * readyState:     video#readyState value
 * secondsToLoad:  Total amount of time in seconds buffering took
 * bufferCount:    Total buffer events for this source
-
-### Pausing
-
-Tracks when users pause the video.
-
-```javascript
-player.on('tracking:pause', (e, data) => console.log(data))
-```
-
-Data Attributes:
-
-* pauseCount:       Total number of Pause events triggered
 
 ### Positioning
 
@@ -67,8 +93,9 @@ Data Attributes:
 * currentTime:      Current second video is on
 * duration:         Total duration of video
 
-
 ### Performance
+
+_*note* a little experimental_
 
 This event triggers when the player has changed sources, has ended, or has been destroyed.
 
@@ -98,29 +125,3 @@ pluginConfig = {
   }
 }
 ```
-
-### Play
-
-This event is triggered when the video has been played for the first time. If you are looking to track play events, simply listen on the player for a normal "play" or "playing" event.
-
-```javascript
-player.on('tracking:firstplay', (e, data) => console.log(data))
-```
-
-Data Attributes:
-
-* secondsToLoad: Total number of seconds between the player initializing a play request and when the first frame begins.
-
-
-### Seeking
-
-During playback, we are tracking how many times a person seeks, and the position a user has seeked to.
-
-```javascript
-player.on('tracking:seek', (e, data) => console.log(data))
-```
-
-Data Attributes:
-
-* seekCount: total number of seeks that has occuring during this file
-* seekTo: Position, in seconds, that has been seeked to.

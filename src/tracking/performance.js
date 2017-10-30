@@ -78,9 +78,10 @@ const PerformanceTracking = function(config) {
     if (timestamps.indexOf(curTime) < 0) {
       timestamps.push(curTime);
     }
-
-    totalDuration = +player.duration().toFixed(0);
     watchedDuration = timestamps.length;
+  });
+  player.on('loadeddata', function(e, data) {
+    totalDuration = +player.duration().toFixed(0);
   });
   player.on('tracking:seek', function(e, data) {
     seekCount = data.seekCount;
