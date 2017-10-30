@@ -21,6 +21,7 @@ const PlayTracking = function(config) {
   let firstplay = false;
   let loadstart = 0;
   let loadend = 0;
+  let secondsToLoad = 0;
 
   const reset = function() {
     firstplay = false;
@@ -36,15 +37,16 @@ const PlayTracking = function(config) {
   });
 
   player.on('loadeddata', function() {
+    loadend = new Date();
+    secondsToLoad = ((loadend - loadstart) / 1000);
+  });
+
+  player.on('playing', function() {
     if (!firstplay) {
       firstplay = true;
-      loadend = new Date();
-
-      const secondsToLoad = ((loadend - loadstart) / 1000);
-
       player.trigger('tracking:firstplay', {secondsToLoad: +secondsToLoad});
     }
-  });
+  })
 };
 
 export default PlayTracking;

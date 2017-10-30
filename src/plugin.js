@@ -22,9 +22,10 @@ const eventTracking = function(options) {
   PauseTracking.apply(this, arguments);
   BufferTracking.apply(this, arguments);
   PositionTracking.apply(this, arguments);
-  PerformanceTracking.apply(this, arguments);
   PlayTracking.apply(this, arguments);
   SeekTracking.apply(this, arguments);
+
+  PerformanceTracking.apply(this, arguments);
 };
 
 // Register the plugin with video.js.

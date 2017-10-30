@@ -56,7 +56,7 @@ const PerformanceTracking = function(config) {
       initialLoadTime
     };
 
-    config.performance.call(data);
+    config.performance.call(player, data);
   };
 
   const triggerAndReset = function() {
@@ -92,8 +92,7 @@ const PerformanceTracking = function(config) {
     ({ bufferCount } = data);
     bufferDuration = bufferDuration + data.secondsToLoad;
   });
-
-  player.on('tracking:play', function(e, data) {
+  player.on('tracking:firstplay', function(e, data) {
     initialLoadTime = data.secondsToLoad;
   });
 };

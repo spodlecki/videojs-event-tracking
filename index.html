@@ -4,25 +4,17 @@
   <meta charset="utf-8">
   <title>videojs-event-tracking Demo</title>
   <link href="node_modules/video.js/dist/video-js.css" rel="stylesheet">
-
+  <link href="examples/console.css" rel="stylesheet">
 </head>
 <body>
-  <video id="videojs-event-tracking-player" class="video-js vjs-default-skin" controls>
-    <source src="//vjs.zencdn.net/v/oceans.mp4" type='video/mp4'>
-    <source src="//vjs.zencdn.net/v/oceans.webm" type='video/webm'>
-  </video>
+  <video id="videojs-event-tracking-player" class="video-js vjs-default-skin" controls></video>
+  <div id="console"></div>
   <ul>
     <li><a href="test/">Run unit tests in browser.</a></li>
-
   </ul>
 
   <script src="node_modules/video.js/dist/video.js"></script>
   <script src="dist/videojs-event-tracking.js"></script>
-  <script>
-    (function(window, videojs) {
-      var player = window.player = videojs('videojs-event-tracking-player');
-      player.eventTracking();
-    }(window, window.videojs));
-  </script>
+  <script src="examples/base.js"></script>
 </body>
 </html>

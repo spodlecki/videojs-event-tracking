@@ -1,0 +1,12 @@
+#console {
+  display: block;
+  background-color: #2e2e2e;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+#console p {
+  color: #9a9a9a;
+  margin: 2px 0;
+}
