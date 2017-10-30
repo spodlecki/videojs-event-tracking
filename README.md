@@ -86,6 +86,18 @@ Data Attributes:
 * bufferDuration:   Total seconds that buffering has occured
 * initialLoadTime:  Seconds it took for the initial frame to appear
 
+*Special Requirement*
+When initializing, you'll need to pass a function to the configuration for this plugin.
+
+```javascript
+pluginConfig = {
+  performance: function(data) {
+    /** Use your preferred event tracking platform.
+     *  Google Analytics? Amplitude? Piwik? Mixpanel?
+     */
+  }
+}
+```
 
 ### Play
 
