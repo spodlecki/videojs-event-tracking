@@ -27,6 +27,7 @@ const PercentileTracking = function(config) {
   let duration = 0;
   let pauseCount = 0;
   let seekCount = 0;
+
   const reset = function(e) {
     first = false;
     second = false;
@@ -48,7 +49,7 @@ const PercentileTracking = function(config) {
     const data = {
       seekCount,
       pauseCount,
-      currentTime: duration,
+      currentTime: curTime,
       duration
     };
 

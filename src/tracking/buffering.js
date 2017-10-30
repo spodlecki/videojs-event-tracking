@@ -18,20 +18,24 @@
 
 const BufferTracking = function(config) {
   const player = this;
-  let scrubbing = false;
   let timer = null;
-  let bufferstart = false;
-  let bufferend = false;
+  let scrubbing = false;
+  let bufferPosition = false;
+  let bufferStart = false;
+  let bufferEnd = false;
   let bufferCount = 0;
+  let readyState = false;
 
   const reset = function() {
     if (timer) {
       clearTimeout(timer);
     }
     scrubbing = false;
-    bufferstart = false;
-    bufferend = false;
+    bufferPosition = false;
+    bufferStart = false;
+    bufferEnd = false;
     bufferCount = 0;
+    readyState = false;
   };
 
   player.on('dispose', reset);
@@ -40,7 +44,7 @@ const BufferTracking = function(config) {
   player.on('pause', function() {
     if (player.scrubbing()) {
       scrubbing = true;
-      bufferstart = false;
+      bufferStart = false;
       timer = setTimeout(function() {
         scrubbing = false;
       }, 200);
@@ -49,28 +53,28 @@ const BufferTracking = function(config) {
 
   player.on('waiting', function() {
     if ((scrubbing === false) && (player.currentTime() > 0)) {
-      bufferstart = new Date();
+      bufferStart = new Date();
+      bufferPosition = +player.currentTime().toFixed(0);
+      readyState = +player.readyState()
     }
   });
 
-  player.on('progress', function() {
-    if (!bufferstart) {
-      return;
-    }
-    bufferend = new Date();
-
+  player.on('timeupdate', function() {
     const curTime = +player.currentTime().toFixed(0);
 
-    const secondsToLoad = ((bufferend - bufferstart) / 1000);
+    if (bufferStart && curTime != bufferPosition) {
+      bufferEnd = new Date();
 
-    bufferstart = false;
+      const secondsToLoad = ((bufferEnd - bufferStart) / 1000);
 
-    if (secondsToLoad > 0) {
+      bufferStart     = false;
+      bufferPosition  = false;
       bufferCount++;
+
       player.trigger('tracking:buffered', {
         currentTime: +curTime,
-        readyState: +player.readyState(),
-        secondsToLoad: +secondsToLoad,
+        readyState: +readyState,
+        secondsToLoad: +secondsToLoad.toFixed(3),
         bufferCount: +bufferCount
       });
     }
