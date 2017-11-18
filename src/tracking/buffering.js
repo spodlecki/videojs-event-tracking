@@ -17,7 +17,6 @@
  */
 
 const BufferTracking = function(config) {
-  const player = this;
   let timer = null;
   let scrubbing = false;
   let bufferPosition = false;
@@ -38,29 +37,27 @@ const BufferTracking = function(config) {
     readyState = false;
   };
 
-  player.on('dispose', reset);
-  player.on('loadstart', reset);
-  player.on('ended', reset);
-  player.on('pause', function() {
-    if (player.scrubbing()) {
+  const onPause = () => {
+    bufferStart = false;
+
+    if (this.scrubbing()) {
       scrubbing = true;
-      bufferStart = false;
       timer = setTimeout(function() {
         scrubbing = false;
       }, 200);
     }
-  });
+  };
 
-  player.on('waiting', function() {
-    if (bufferStart == false && scrubbing === false && player.currentTime() > 0) {
+  const onPlayerWaiting = () => {
+    if (bufferStart == false && scrubbing === false && this.currentTime() > 0) {
       bufferStart = new Date();
-      bufferPosition = +player.currentTime().toFixed(0);
-      readyState = +player.readyState();
+      bufferPosition = +this.currentTime().toFixed(0);
+      readyState = +this.readyState();
     }
-  });
+  }
 
-  player.on('timeupdate', function() {
-    const curTime = +player.currentTime().toFixed(0);
+  const onTimeupdate = () => {
+    const curTime = +this.currentTime().toFixed(0);
 
     if (bufferStart && curTime != bufferPosition) {
       bufferEnd = new Date();
@@ -71,14 +68,21 @@ const BufferTracking = function(config) {
       bufferPosition  = false;
       bufferCount++;
 
-      player.trigger('tracking:buffered', {
+      this.trigger('tracking:buffered', {
         currentTime: +curTime,
         readyState: +readyState,
         secondsToLoad: +secondsToLoad.toFixed(3),
         bufferCount: +bufferCount
       });
     }
-  });
+  }
+
+  this.on('dispose', reset);
+  this.on('loadstart', reset);
+  this.on('ended', reset);
+  this.on('pause', onPause);
+  this.on('waiting', onPlayerWaiting);
+  this.on('timeupdate', onTimeupdate);
 };
 
 export default BufferTracking;
