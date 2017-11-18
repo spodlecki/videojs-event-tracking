@@ -64,6 +64,13 @@ const PerformanceTracking = function(config) {
     reset();
   };
 
+  if (typeof(window.addEventListener) == 'function') {
+    window.addEventListener('beforeunload', triggerAndReset);
+    player.on('dispose', function() {
+      window.removeEventListener('beforeunload', triggerAndReset);
+    });
+  }
+
   player.on('loadstart', function() {
     if (totalDuration > 0) {
       trigger();
