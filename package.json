@@ -1,7 +1,7 @@
 {
   "name": "videojs-event-tracking",
   "homepage": "https://github.com/spodlecki/videojs-event-tracking",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Track events with VideoJS 5 and keep an eye on performance metrics",
   "main": "dist/videojs-event-tracking.cjs.js",
   "module": "dist/videojs-event-tracking.es.js",
