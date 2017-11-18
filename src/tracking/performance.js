@@ -98,7 +98,7 @@ const PerformanceTracking = function(config) {
   });
   player.on('tracking:buffered', function(e, data) {
     ({ bufferCount } = data);
-    bufferDuration = bufferDuration + data.secondsToLoad;
+    bufferDuration = +(bufferDuration + data.secondsToLoad).toFixed(3);
   });
   player.on('tracking:firstplay', function(e, data) {
     initialLoadTime = data.secondsToLoad;
