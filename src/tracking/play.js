@@ -17,7 +17,6 @@
  */
 
 const PlayTracking = function(config) {
-  const player = this;
   let firstplay = false;
   let loadstart = 0;
   let loadend = 0;
@@ -27,26 +26,32 @@ const PlayTracking = function(config) {
     firstplay = false;
     loadstart = 0;
     loadend = 0;
+    secondsToLoad = 0;
   };
 
-  player.on('dispose', reset);
-  player.on('loadstart', function() {
-    firstplay = false;
-    loadend = 0;
+  const onLoadStart = function() {
+    reset();
     loadstart = new Date();
-  });
+  };
 
-  player.on('loadeddata', function() {
+  const onLoadedData = function() {
     loadend = new Date();
     secondsToLoad = ((loadend - loadstart) / 1000);
-  });
+  };
 
-  player.on('playing', function() {
+  const onPlaying = () => {
     if (!firstplay) {
       firstplay = true;
-      player.trigger('tracking:firstplay', {secondsToLoad: +secondsToLoad});
+      this.trigger('tracking:firstplay', {
+        secondsToLoad: +(secondsToLoad.toFixed(3))
+      });
     }
-  })
+  }
+
+  this.on('dispose', reset);
+  this.on('loadstart', onLoadStart);
+  this.on('loadeddata', onLoadedData);
+  this.on('playing', onPlaying);
 };
 
 export default PlayTracking;
