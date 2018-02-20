@@ -46,7 +46,7 @@ const PlayTracking = function(config) {
         secondsToLoad: +(secondsToLoad.toFixed(3))
       });
     }
-  }
+  };
 
   this.on('dispose', reset);
   this.on('loadstart', onLoadStart);

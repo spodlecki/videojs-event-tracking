@@ -29,7 +29,7 @@ const eventTracking = function(options) {
 };
 
 // Register the plugin with video.js.
-if (typeof(videojs.getPlugin('eventTracking')) == 'undefined') {
+if (typeof videojs.getPlugin('eventTracking') === 'undefined') {
   registerPlugin('eventTracking', eventTracking);
 }
 

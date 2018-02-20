@@ -20,7 +20,7 @@
  *           An object of config left to the plugin author to define.
  */
 const PerformanceTracking = function(config) {
-  if (typeof config == 'undefined' || typeof config.performance !== 'function') {
+  if (typeof config === 'undefined' || typeof config.performance !== 'function') {
     return;
   }
 
@@ -64,7 +64,7 @@ const PerformanceTracking = function(config) {
     reset();
   };
 
-  if (typeof(window.addEventListener) == 'function') {
+  if (typeof window.addEventListener === 'function') {
     window.addEventListener('beforeunload', triggerAndReset);
     player.on('dispose', function() {
       window.removeEventListener('beforeunload', triggerAndReset);

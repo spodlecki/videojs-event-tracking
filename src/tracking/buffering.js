@@ -49,23 +49,23 @@ const BufferTracking = function(config) {
   };
 
   const onPlayerWaiting = () => {
-    if (bufferStart == false && scrubbing === false && this.currentTime() > 0) {
+    if (bufferStart === false && scrubbing === false && this.currentTime() > 0) {
       bufferStart = new Date();
       bufferPosition = +this.currentTime().toFixed(0);
       readyState = +this.readyState();
     }
-  }
+  };
 
   const onTimeupdate = () => {
     const curTime = +this.currentTime().toFixed(0);
 
-    if (bufferStart && curTime != bufferPosition) {
+    if (bufferStart && curTime !== bufferPosition) {
       bufferEnd = new Date();
 
       const secondsToLoad = ((bufferEnd - bufferStart) / 1000);
 
-      bufferStart     = false;
-      bufferPosition  = false;
+      bufferStart = false;
+      bufferPosition = false;
       bufferCount++;
 
       this.trigger('tracking:buffered', {
@@ -75,7 +75,7 @@ const BufferTracking = function(config) {
         bufferCount: +bufferCount
       });
     }
-  }
+  };
 
   this.on('dispose', reset);
   this.on('loadstart', reset);
