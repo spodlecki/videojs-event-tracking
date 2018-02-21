@@ -11,7 +11,7 @@
  * => seekCount:        Total number of Seek events triggered
  * => bufferCount:      Total number of Buffer events triggered
  * => totalDuration:    Total duration provided by the file
- * => watchedDuration:  Total number of seconds watched, this excluses seconds a user has seeked past.
+ * => watchedDuration:  Total number of seconds watched (not seeked past)
  * => bufferDuration:   Total seconds that buffering has occured
  * => initialLoadTime:  Seconds it took for the initial frame to appear
  *

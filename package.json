@@ -92,5 +92,11 @@
     "sinon": "^2.2.0",
     "uglify-js": "^3.0.7",
     "videojs-standard": "^6.0.0"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "node": true
+    }
   }
 }
