@@ -10,6 +10,7 @@ import SeekTracking from './tracking/seek';
 
 // Cross-compatibility for Video.js 5 and 6.
 const registerPlugin = videojs.registerPlugin || videojs.plugin;
+const getPlugin = videojs.getPlugin || videojs.plugin;
 
 /**
  * Event Tracking for VideoJS
@@ -24,12 +25,11 @@ const eventTracking = function(options) {
   PositionTracking.apply(this, arguments);
   PlayTracking.apply(this, arguments);
   SeekTracking.apply(this, arguments);
-
   PerformanceTracking.apply(this, arguments);
 };
 
-// Register the plugin with video.js.
-if (typeof videojs.getPlugin('eventTracking') === 'undefined') {
+// Register the plugin with video.js, avoid double registration
+if (typeof getPlugin('eventTracking') === 'undefined') {
   registerPlugin('eventTracking', eventTracking);
 }
 
