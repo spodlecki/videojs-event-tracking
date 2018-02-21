@@ -82,11 +82,13 @@ const PercentileTracking = function(config) {
 
   player.on('durationchange', function() {
     duration = +player.duration().toFixed(0);
-    const quarter = (duration / 4).toFixed(0);
+    if (duration > 0) {
+      const quarter = (duration / 4).toFixed(0);
 
-    first = +quarter;
-    second = +quarter * 2;
-    third = +quarter * 3;
+      first = +quarter;
+      second = +quarter * 2;
+      third = +quarter * 3;
+    }
   });
 };
 
