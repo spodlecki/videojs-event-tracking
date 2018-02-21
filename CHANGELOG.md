@@ -1,3 +1,11 @@
+## 0.0.8
+
+- Hotfix: allowing use for videojs 5 and videojs 6
+
+## 0.0.7
+
+- Updating to VideoJS6
+
 ## 0.0.6
 
 - Updating Performance Tracking to include a beforeunload event
