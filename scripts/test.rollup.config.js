@@ -11,7 +11,7 @@ import resolve from 'rollup-plugin-node-resolve';
 
 export default {
   moduleName: 'videojsEventTrackingTests',
-  entry: 'test/**/*.test.js',
+  entry: 'test/plugin.test.js',
   dest: 'test/dist/bundle.js',
   format: 'iife',
   external: [
