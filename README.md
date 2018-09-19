@@ -8,6 +8,10 @@ Track events with VideoJS and keep an eye on performance metrics. Currently unde
 npm install --save videojs-event-tracking
 ```
 
+```sh
+yarn add videojs-event-tracking
+```
+
 ## Usage
 
 To include videojs-event-tracking on your website or web application, use any of the following methods.
