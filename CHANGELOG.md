@@ -1,3 +1,9 @@
+## 1.0.0
+
+- Releasing 1.0.0
+- Testing with videojs 7
+- Updating package.json with a full upgrade
+
 ## 0.0.8
 
 - Hotfix: allowing use for videojs 5 and videojs 6

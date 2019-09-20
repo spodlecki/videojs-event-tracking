@@ -1,6 +1,6 @@
 # videojs-event-tracking
 
-Track events with VideoJS and keep an eye on performance metrics. Currently under development. `1.0.0` or better will signify stable release
+Track events with VideoJS and keep an eye on performance metrics. This has been tested with VideoJS 5 through 7, if you want to see if it works nicely with your version simply clone the repo and update package.json. Open `index.html` and press play -- watch the events stream through.
 
 ## Installation
 
