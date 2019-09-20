@@ -1,8 +1,8 @@
 {
   "name": "videojs-event-tracking",
   "homepage": "https://github.com/spodlecki/videojs-event-tracking",
-  "version": "0.0.9",
-  "description": "Track events with VideoJS 5 and keep an eye on performance metrics",
+  "version": "1.0.0",
+  "description": "Track events with VideoJS and keep an eye on performance metrics",
   "main": "dist/videojs-event-tracking.cjs.js",
   "module": "dist/videojs-event-tracking.es.js",
   "generator-videojs-plugin": {
@@ -59,7 +59,7 @@
   ],
   "dependencies": {
     "global": "^4.3.2",
-    "video.js": "^6.6.3"
+    "video.js": "^7.0.0"
   },
   "devDependencies": {
     "babel-plugin-external-helpers": "^6.22.0",
@@ -91,7 +91,7 @@
     "semver": "^5.3.0",
     "sinon": "^2.2.0",
     "uglify-js": "^3.0.7",
-    "videojs-standard": "^6.0.0"
+    "videojs-standard": "^7.0.0"
   },
   "eslintConfig": {
     "env": {

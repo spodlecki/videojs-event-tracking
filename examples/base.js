@@ -12,16 +12,16 @@
     e.preventDefault();
     player.autoplay(true);
     player.src([
-      { src: '//vjs.zencdn.net/v/oceans.mp4?' + Math.random(), type: 'video/mp4' },
-      { src: '//vjs.zencdn.net/v/oceans.webm?' + Math.random(), type: 'video/webm' }
+      { src: 'https://vjs.zencdn.net/v/oceans.mp4?' + Math.random(), type: 'video/mp4' },
+      { src: 'https://vjs.zencdn.net/v/oceans.webm?' + Math.random(), type: 'video/webm' }
     ]);
   });
 
   var player = window.player = videojs('videojs-event-tracking-player', {
-    poster: 'http://vjs.zencdn.net/v/oceans.png',
+    poster: 'https://vjs.zencdn.net/v/oceans.png',
     sources: [
-      { src: '//vjs.zencdn.net/v/oceans.mp4', type: 'video/mp4' },
-      { src: '//vjs.zencdn.net/v/oceans.webm', type: 'video/webm' }
+      { src: 'https://vjs.zencdn.net/v/oceans.mp4', type: 'video/mp4' },
+      { src: 'https://vjs.zencdn.net/v/oceans.webm', type: 'video/webm' }
     ]
   });
 
