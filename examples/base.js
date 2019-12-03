@@ -28,7 +28,12 @@
   player.eventTracking({
     performance: function(data) {
       log('tracking:performance', data);
-    }
+    },
+    /*
+    // optional configuration to consider buffering while user is scrubbing on the video player.
+    bufferingConfig: {
+      includeScrub: true
+    }*/
   });
 
   player.on('tracking:firstplay', function(e, data) {
