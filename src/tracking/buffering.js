@@ -3,6 +3,11 @@
  * @param    {Object} [options={}]
  *           An object of options left to the plugin author to define.
  *
+ *           Can contain the following optional configuration, passed during plugin initialization:
+ *           bufferingConfig.includeScrub => Boolean indicating whether buffering metrics
+ *           should be considered for computation while user is scrubbing on the video player.
+ *
+ *
  * Tracks when the video player is marked as buffering and waits until the player
  * has made some progress.
  *
@@ -40,7 +45,7 @@ const BufferTracking = function(config) {
   const onPause = () => {
     bufferStart = false;
 
-    if (this.scrubbing()) {
+    if (this.scrubbing() && !(config.bufferingConfig && config.bufferingConfig.includeScrub)) {
       scrubbing = true;
       timer = setTimeout(function() {
         scrubbing = false;
