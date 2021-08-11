@@ -24,7 +24,7 @@ const PercentileTracking = function(config) {
   let first = false;
   let second = false;
   let third = false;
-  let duration = 0;
+  let duration = null;
   let pauseCount = 0;
   let seekCount = 0;
 
@@ -32,7 +32,7 @@ const PercentileTracking = function(config) {
     first = false;
     second = false;
     third = false;
-    duration = 0;
+    duration = null;
     pauseCount = 0;
     seekCount = 0;
   };
@@ -40,11 +40,26 @@ const PercentileTracking = function(config) {
   const incPause = () => pauseCount++;
   const incSeek = () => seekCount++;
 
+  const getDuration = function() {
+    duration = +player.duration().toFixed(0);
+    if (duration > 0) {
+      const quarter = (duration / 4).toFixed(0);
+
+      first = +quarter;
+      second = +quarter * 2;
+      third = +quarter * 3;
+    }
+  };
+
   player.on('dispose', reset);
   player.on('loadstart', reset);
   player.on('tracking:pause', incPause);
   player.on('tracking:seek', incSeek);
   player.on('timeupdate', function() {
+    if (duration === null) {
+      getDuration();
+    }
+
     const curTime = +player.currentTime().toFixed(0);
     const data = {
       seekCount,
@@ -80,16 +95,7 @@ const PercentileTracking = function(config) {
     player.trigger('tracking:fourth-quarter', data);
   });
 
-  player.on('durationchange', function() {
-    duration = +player.duration().toFixed(0);
-    if (duration > 0) {
-      const quarter = (duration / 4).toFixed(0);
-
-      first = +quarter;
-      second = +quarter * 2;
-      third = +quarter * 3;
-    }
-  });
+  player.on('durationchange', getDuration);
 };
 
 export default PercentileTracking;
