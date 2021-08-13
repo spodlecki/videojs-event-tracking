@@ -1,3 +1,7 @@
+## 1.0.2
+
+- Adds a failsafe to percentile never firing
+
 ## 1.0.1
 
 - [Adds an option for buffering data collection](https://github.com/spodlecki/videojs-event-tracking/pull/10)
