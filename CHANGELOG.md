@@ -1,3 +1,6 @@
+<a name="1.0.3"></a>
+## 1.0.3 (2022-03-21)
+
 ## 1.0.2
 
 - Adds a failsafe to percentile never firing
