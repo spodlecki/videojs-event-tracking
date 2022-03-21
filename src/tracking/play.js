@@ -17,13 +17,13 @@
  */
 
 const PlayTracking = function(config) {
-  let firstplay = false;
+  let hasBeenTriggered = false;
   let loadstart = 0;
   let loadend = 0;
   let secondsToLoad = 0;
 
   const reset = function() {
-    firstplay = false;
+    hasBeenTriggered = false;
     loadstart = 0;
     loadend = 0;
     secondsToLoad = 0;
@@ -40,14 +40,15 @@ const PlayTracking = function(config) {
   };
 
   const onPlaying = () => {
-    if (!firstplay) {
-      firstplay = true;
+    if (!hasBeenTriggered) {
+      hasBeenTriggered = true;
       this.trigger('tracking:firstplay', {
         secondsToLoad: +(secondsToLoad.toFixed(3))
       });
     }
   };
 
+  this.on('ended', reset);
   this.on('dispose', reset);
   this.on('loadstart', onLoadStart);
   this.on('loadeddata', onLoadedData);

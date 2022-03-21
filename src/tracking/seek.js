@@ -17,23 +17,15 @@
 const SeekTracking = function(config) {
   const player = this;
   let seekCount = 0;
-  let locked = true;
+
   const reset = function() {
     seekCount = 0;
-    locked = true;
   };
 
   player.on('dispose', reset);
   player.on('loadstart', reset);
   player.on('ended', reset);
-  player.on('play', () => {
-    locked = false;
-  });
-  player.on('pause', function() {
-    if (locked || !player.scrubbing()) {
-      return;
-    }
-
+  player.on('seeking', function() {
     const curTime = +player.currentTime().toFixed(0);
 
     seekCount++;

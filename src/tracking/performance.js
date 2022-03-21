@@ -75,8 +75,10 @@ const PerformanceTracking = function(config) {
     if (totalDuration > 0) {
       trigger();
     }
+
     reset();
   });
+
   player.on('ended', triggerAndReset);
   player.on('dispose', triggerAndReset);
   player.on('timeupdate', function() {
