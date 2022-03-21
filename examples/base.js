@@ -40,6 +40,14 @@
     log(e.type, data);
   });
 
+  player.on('error', function(e) {
+    log(e.type, { message: e.message });
+  });
+
+  player.on('tracking:play', function(e, data) {
+    log(e.type, data);
+  });
+
   player.on('tracking:pause', function(e, data) {
     log(e.type, data);
   });
@@ -71,4 +79,6 @@
   player.on('tracking:seek', function(e, data) {
     log(e.type, data);
   });
+
+  log('videojs', { version: videojs.VERSION });
 }(window, window.videojs));

@@ -17,6 +17,7 @@ const PauseTracking = function(config) {
   let pauseCount = 0;
   let timer = null;
   let locked = false;
+
   const reset = function(e) {
     if (timer) {
       clearTimeout(timer);
@@ -25,11 +26,18 @@ const PauseTracking = function(config) {
     locked = false;
   };
 
+  const isSeeking = function() {
+    return (
+      typeof (player.seeking) === 'function' && player.seeking() ||
+      typeof (player.scrubbing) === 'function' && player.scrubbing()
+    );
+  };
+
   player.on('dispose', reset);
   player.on('loadstart', reset);
   player.on('ended', reset);
   player.on('pause', function() {
-    if (player.scrubbing() || locked) {
+    if (isSeeking() || locked) {
       return;
     }
 
