@@ -58,7 +58,7 @@
     "test/"
   ],
   "dependencies": {
-    "video.js": ">=5.x"
+    "video.js": ">=5.20.5"
   },
   "devDependencies": {
     "babel-plugin-external-helpers": "^6.22.0",
