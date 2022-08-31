@@ -20,7 +20,7 @@
  *           An object of config left to the plugin author to define.
  */
 const PerformanceTracking = function(config) {
-  if (typeof config === 'undefined' || typeof config.performance !== 'function') {
+  if (typeof config === 'undefined') {
     return;
   }
 
@@ -56,7 +56,14 @@ const PerformanceTracking = function(config) {
       initialLoadTime
     };
 
-    config.performance.call(player, data);
+    // warning: using this event instead of the function will reduce the accuracy
+    //          when a user refreshes the browser or closes, the beforeunload
+    //          event will become a race condition.
+    player.trigger('tracking:performance', data);
+
+    if (typeof config.performance === 'function') {
+      config.performance.call(player, data);
+    }
   };
 
   const triggerAndReset = function() {
