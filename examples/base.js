@@ -72,10 +72,6 @@
     log(e.type, data);
   });
 
-  player.on('tracking:performance', function(e, data) {
-    log(e.type, data);
-  });
-
   player.on('tracking:seek', function(e, data) {
     log(e.type, data);
   });

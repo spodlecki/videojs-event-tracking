@@ -103,10 +103,6 @@ _*note* a little experimental_
 
 This event triggers when the player has changed sources, has ended, or has been destroyed.
 
-```javascript
-player.on('tracking:performance', (e, data) => console.log(data))
-```
-
 Data Attributes:
 
 * pauseCount:       Total number of Pause events triggered
@@ -129,3 +125,9 @@ pluginConfig = {
   }
 }
 ```
+
+*Why?*
+
+In order to keep accuracy high, it listens for the [browser's `beforeunload`](https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeunload_event).
+While it is not completely accurate either, it does give us more opportunity to catch the actual performance data we're looking for. This functionality
+should be noted that there is potential for noise.

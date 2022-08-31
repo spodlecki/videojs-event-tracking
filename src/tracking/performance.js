@@ -4,7 +4,11 @@
  * has been destroyed.
  *
  * Example Usage:
- * player.on('tracking:performance', (e, data) => console.log(data))
+ * player.eventTracking({
+ *  performance: function(data) {
+ *    // tracking here...
+ *  },
+ * });
  *
  * Data Attributes:
  * => pauseCount:       Total number of Pause events triggered
