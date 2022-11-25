@@ -25,7 +25,7 @@ const SeekTracking = function(config) {
   player.on('dispose', reset);
   player.on('loadstart', reset);
   player.on('ended', reset);
-  player.on('seeking', function() {
+  player.on('seeked', function() {
     const curTime = +player.currentTime().toFixed(0);
 
     seekCount++;
